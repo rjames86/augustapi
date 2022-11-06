@@ -38,9 +38,8 @@ import {
   House,
   ActivityResponse,
   ActivityEvent,
-} from "august";
-import moment, { Moment } from "moment";
-import { millisecondsToDate } from "../helpers/dates";
+} from "../types";
+import { millisecondsToDate } from "./helpers/dates";
 
 export class API {
   async _callApi(

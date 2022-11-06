@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "request-promise": "^4.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9"
   }
 }

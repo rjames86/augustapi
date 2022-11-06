@@ -21,7 +21,7 @@ interface IAuthentication {
 import { API } from "./api";
 import { HEADER_AUGUST_ACCESS_TOKEN } from "./constants";
 import moment from "moment";
-import { daysBetween } from "../helpers/dates";
+import { daysBetween } from "./helpers/dates";
 
 const ValidationResult = {
   VALIDATED: "validated",
@@ -37,8 +37,8 @@ const ValidationResult = {
 const createAuthentication = (
   state: AuthenticationStateTypes,
   install_id: string | null = null,
-  access_token: string | null = null,
-  access_token_expires: string | null = null
+  access_token: string,
+  access_token_expires: string
 ): IAuthentication => ({
   state,
   install_id: install_id != null ? install_id : UUID.v4(),
@@ -63,8 +63,6 @@ export class Authenticator {
     this._username = username;
     this._password = password;
     this._install_id = UUID.v4();
-    this.access_token = null;
-    this.access_token_expires = null;
 
     const cache = this._get_cache_authentication();
 
@@ -82,8 +80,8 @@ export class Authenticator {
       this.authentication = createAuthentication(
         cache.state,
         cache.install_id,
-        cache.access_token,
-        cache.access_token_expires
+        cache.access_token!,
+        cache.access_token_expires!
       );
     }
   }
@@ -99,7 +97,7 @@ export class Authenticator {
     const identifier = `${this._login_method}:${this._username}`;
     const install_id = this.authentication.install_id;
     const { data, headers } = await this.api.getSession(
-      install_id,
+      install_id!,
       identifier,
       this._password
     );
@@ -133,7 +131,7 @@ export class Authenticator {
 
   async send_verification_code(): Promise<void> {
     await this.api.sendVerificationCode(
-      this.authentication.access_token,
+      this.authentication.access_token!,
       this._login_method,
       this._username
     );
@@ -141,7 +139,7 @@ export class Authenticator {
   async validate_verification_code(verification_code: number): Promise<string> {
     try {
       await this.api.validateVerificationCode(
-        this.authentication.access_token,
+        this.authentication.access_token!,
         this._login_method,
         this._username,
         verification_code
