@@ -1,5 +1,9 @@
-import moment from "moment";
-import { DATE_SHORT, DATE_LONG } from "airbnbapijs";
+import * as moment from "moment";
+
+/** YYYY-MM-DD */
+export type DATE_SHORT = string;
+/** YYYY-MM-DDTHH:MM:SSZ */
+export type DATE_LONG = string;
 
 export const isSameDate = (
   firstDate: DATE_SHORT | moment.Moment,

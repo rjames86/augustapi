@@ -1,5 +1,5 @@
-import UUID from "uuid";
-import fs from "fs";
+import * as UUID from "uuid";
+import * as fs from "fs";
 const REQUIRES_AUTHENTICATION = "requires_authentication";
 const REQUIRES_VALIDATION = "requires_validation";
 const AUTHENTICATED = "authenticated";
@@ -20,7 +20,7 @@ interface IAuthentication {
 
 import { API } from "./api";
 import { HEADER_AUGUST_ACCESS_TOKEN } from "./constants";
-import moment from "moment";
+import * as moment from "moment";
 import { daysBetween } from "./helpers/dates";
 
 const ValidationResult = {
@@ -162,7 +162,7 @@ export class Authenticator {
     fs.writeFile(
       this.access_token_cache,
       JSON.stringify(this.authentication),
-      (_) => null
+      () => null
     );
   }
 
@@ -191,7 +191,7 @@ export class Authenticator {
   private should_refresh() {
     return (
       this.authentication.state == AUTHENTICATED &&
-      daysBetween(this.authentication.access_token_expires) < 7
+      daysBetween(this.authentication.access_token_expires!) < 7
     );
   }
 }

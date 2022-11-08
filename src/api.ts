@@ -1,4 +1,4 @@
-import rp from "request-promise";
+import * as rp from "request-promise";
 
 import {
   API_GET_SESSION_URL,
@@ -15,7 +15,6 @@ import {
 import {
   HEADER_ACCEPT_VERSION,
   HEADER_AUGUST_API_KEY,
-  HEADER_KEASE_API_KEY,
   HEADER_CONTENT_TYPE,
   HEADER_USER_AGENT,
   HEADER_AUGUST_ACCESS_TOKEN,
@@ -31,7 +30,6 @@ import {
 import {
   IAuthentication,
   LockResponse,
-  Pin,
   PinResponse,
   LockDetail,
   Activity,
@@ -62,10 +60,10 @@ export class API {
       json: true,
     };
     if (opts.version != null) {
-      options.headers[HEADER_ACCEPT_VERSION] = opts.version;
+      options.headers![HEADER_ACCEPT_VERSION] = opts.version;
       delete opts.version;
     } else {
-      options.headers[HEADER_ACCEPT_VERSION] = HEADER_VALUE_ACCEPT_VERSION;
+      options.headers![HEADER_ACCEPT_VERSION] = HEADER_VALUE_ACCEPT_VERSION;
     }
 
     options = {

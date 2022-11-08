@@ -17,6 +17,7 @@
       "strictNullChecks": true
     },
     "include": [
-      "./types.d.ts"
+      "./types.d.ts",
+      "src/**/*"
     ]
   }
