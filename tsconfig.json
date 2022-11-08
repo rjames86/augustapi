@@ -11,7 +11,7 @@
       "noImplicitReturns": true,
       "noUnusedLocals": true,
       "preserveConstEnums": true,
-      "outDir": "build",
+      "outDir": "dist",
       "lib": ["es6", "dom"],
       "alwaysStrict": true,
       "strictNullChecks": true
