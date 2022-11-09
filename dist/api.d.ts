@@ -10,7 +10,7 @@ export declare class API {
     getHouse(auth: IAuthentication, houseId: string): Promise<House>;
     getLocks(auth: IAuthentication): Promise<LockResponse>;
     getLockDetail(auth: IAuthentication, lock_id: string): Promise<LockDetail>;
-    getPins(lock_id: string, auth: IAuthentication): Promise<PinResponse>;
+    getPins(auth: IAuthentication, lock_id: string): Promise<PinResponse>;
     getHouseActivities(auth: IAuthentication, house_id: string): Promise<Array<Activity>>;
     getRefreshToken(auth: IAuthentication): Promise<{
         data: any;
