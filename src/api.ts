@@ -178,7 +178,7 @@ export class API {
     );
   }
 
-  async getPins(lock_id: string, auth: IAuthentication): Promise<PinResponse> {
+  async getPins(auth: IAuthentication, lock_id: string): Promise<PinResponse> {
     return this._callApi(
       API_GET_PINS_URL(lock_id),
       "get",
